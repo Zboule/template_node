@@ -1,0 +1,7 @@
+{
+    "git.autofetch": true,
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "tslint.autoFixOnSave":true
+}
