@@ -13,6 +13,5 @@ export class TestRoute {
 
     public requestHandler = (_req: Request, res: Response, _next: NextFunction): void => {
         res.send('Yeahhhhhhhh you did it')
-
     }
 }

@@ -6,7 +6,7 @@
 import 'reflect-metadata'
 
 import { Container } from 'inversify'
-import { TestRoute } from 'routes/testRoute'
+import { TestRoute } from './routes/TestRoute'
 
 export const container = new Container()
 

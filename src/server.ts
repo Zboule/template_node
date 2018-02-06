@@ -3,10 +3,10 @@
  * @author	Jordane CURÉ
  */
 
-import { container } from 'inversify.config'
+import { container } from './inversify.config'
 
-import { ExpressApp } from 'express/ExpressApp'
-import { TestRoute } from 'routes/testRoute'
+import { ExpressApp } from './express/ExpressApp'
+import { TestRoute } from './routes/TestRoute'
 
 const server = new ExpressApp()
 

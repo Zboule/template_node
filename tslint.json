@@ -2,7 +2,8 @@
     "rules": {
         "adjacent-overload-signatures": true,
         "ban-types": [
-            true, [
+            true,
+            [
                 "Object",
                 "Use {} instead."
             ],
@@ -67,16 +68,12 @@
             }
         ],
         "unified-signatures": true,
-        //
-        // Functionality
-        // These rules catch common errors in JS programming or otherwise confusing constructs that are prone to producing bugs
-        //
         "await-promise": true,
         "ban": [
             false
         ],
         "curly": true,
-        "forin": true,
+        "forin": false,
         "import-blacklist": true,
         "label-position": true,
         "no-arg": true,
@@ -125,10 +122,6 @@
         "triple-equals": true,
         "typeof-compare": true,
         "use-isnan": true,
-        //
-        // Maintainability
-        // These rules make code maintenance easier
-        //
         "cyclomatic-complexity": [
             false,
             12
@@ -172,10 +165,6 @@
                 }
             }
         ],
-        //
-        // Style
-        // These rules enforce consistent style across your codebase
-        //
         "align": [
             true,
             "parameters",
@@ -267,13 +256,6 @@
             "check-operator",
             "check-typecast"
         ],
-        /*
-            Tslint rules
-            https://www.npmjs.com/package/tslint-eslint-rules
-        */
-        //
-        // Possible Errors
-        //
         "no-constant-condition": true,
         "no-control-regex": true,
         "no-duplicate-case": true,

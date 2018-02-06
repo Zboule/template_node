@@ -1,40 +1,28 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "alwaysStrict": false,
-    "baseUrl": "./src",
     "charset": "utf8",
-    "diagnostics": true,
-    "disableSizeLimit": false,
-    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "es6"
-    ],
-    "listEmittedFiles": true,
-    "listFiles": true,
     "newLine": "LF",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noStrictGenericChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "target": "es5",
+    "baseUrl": ".",
     "typeRoots": [
       "./typings",
       "node_modules/@types"
     ],
-    "version": true
+    "lib": [
+      "es2015"
+    ],
+    "strict": true,
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "alwaysStrict": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "pretty": true
   }
 }

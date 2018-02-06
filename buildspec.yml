@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+
+  install:
+    commands:
+      # - REPOSITORY_URI=288662045166.dkr.ecr.us-east-1.amazonaws.com/cryptovacum
+      # - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+
+  pre_build:
+    commands:
+      # - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)      
+      # - docker run -e COUCHDB_PASSWORD=j -e COUCHDB_USER=admin --name cryptocouchdb -p 5984:5984 -d zboule/docker.repository.crypto.couchdb:develop
+
+  build:
+    commands:
+      # - docker build -t $REPOSITORY_URI:latest .
+      # - docker run -v $(pwd)/tests:/app/tests --link cryptocouchdb -e COUCHDB_PASSWORD=j -e COUCHDB_USER=admin -e COUCHDB_URL=http://cryptocouchdb:5984/ --entrypoint '/bin/bash'  $REPOSITORY_URI:latest -c 'npm run test'
+      # - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      # - docker push $REPOSITORY_URI:latest
+      # - docker push $REPOSITORY_URI:$IMAGE_TAG
+      # - echo Writing image definitions file...
+      # - printf '[{"name":"cryptovacum","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files: imagedefinitions.json

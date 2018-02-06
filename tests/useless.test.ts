@@ -6,7 +6,7 @@
 import 'reflect-metadata'
 
 import { assert } from 'chai'
-import { TestRoute } from 'routes/testRoute'
+import { TestRoute } from '../src/routes/TestRoute'
 import { IRequestHandlerParams, RequestObjectGenerator } from './tools/RequestObjectGenerator'
 
 
