@@ -11,44 +11,6 @@ services:
     networks:
       - network-project-name-dev
     command: [ "npm", "run", "startDev"]
-  # cryptovacum-dev:
-  #   build: .
-  #   environment:
-  #     - CRYPTOVACCUM_ENVIRONMENT=dev
-  #     - 'COUCHDB_URL=http://cryptocouchdb-dev:5984/'
-  #     - COUCHDB_PASSWORD=dev
-  #     - COUCHDB_USER=admin
-  #     - NODE_ENV=development
-  #   volumes:
-  #     - ./node_modules:/app/node_modules
-  #     - ./src:/app/src
-  #   networks:
-  #     - network-cryptovacum-dev
-  #   command: [ "npm", "run", "startDev"]
-  # cryptocouchdb-test:
-  #   environment:
-  #     - COUCHDB_PASSWORD=dev
-  #     - COUCHDB_USER=admin
-  #   image: 'zboule/docker.repository.crypto.couchdb:develop'
-  #   ports:
-  #     - '5980:5984'
-  #   networks:
-  #     - network-cryptovacum-test
-  # cryptovacum-test:
-  #   build: .
-  #   environment:
-  #     - CRYPTOVACCUM_ENVIRONMENT=test
-  #     - 'COUCHDB_URL=http://cryptocouchdb-test:5984/'
-  #     - COUCHDB_PASSWORD=dev
-  #     - COUCHDB_USER=admin
-  #     - NODE_ENV=development
-  #   volumes:
-  #     - ./node_modules:/app/node_modules
-  #     - ./src:/app/src
-  #     - ./tests:/app/tests
-  #   networks:
-  #     - network-cryptovacum-test
-  #   command: [ "npm", "run", "startTest"]
 networks:
   network-project-name-dev:
 

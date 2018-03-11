@@ -1,16 +1,10 @@
+
 /**
  * @file	Entry point of the server
  * @author	Jordane CURÉ
  */
 
-import { container } from './inversify.config'
+import { simulator } from './logic/Simulator'
 
-import { ExpressApp } from './express/ExpressApp'
-import { TestRoute } from './routes/TestRoute'
-
-const server = new ExpressApp()
-
-server.addGet('/', container.get(TestRoute).requestHandler)
-
-server.startApp(9691)
+simulator.startSimulation()
 
