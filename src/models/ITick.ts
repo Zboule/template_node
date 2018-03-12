@@ -7,9 +7,9 @@ export interface ITick {
     open?: number,
     high?: number,
     low?: number,
-    close: number,
+    close?: number,
     volume?: number,
-    time: string,
+    time: number,
     baseVolume?: number,
     // specificbinance
     numberOfTrade?: number,

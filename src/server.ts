@@ -4,7 +4,13 @@
  * @author	Jordane CURÉ
  */
 
-import { simulator } from './logic/Simulator'
+import { coreAI } from './logic/CoreAI'
 
-simulator.startSimulation()
 
+const startServer = async () => {
+    for (let i = 0; i < 10; i++) {
+        await coreAI.startSimulation()
+    }
+}
+
+startServer()

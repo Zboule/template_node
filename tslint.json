@@ -141,7 +141,7 @@
             3
         ],
         "max-file-line-count": [
-            true,
+            false,
             400
         ],
         "max-line-length": [
@@ -212,7 +212,7 @@
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-initializer": true,
         "no-unnecessary-qualifier": true,
-        "number-literal-format": true,
+        "number-literal-format": false,
         "object-literal-key-quotes": [
             true,
             "as-needed"
