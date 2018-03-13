@@ -84,6 +84,10 @@ export class Wallet {
         console.log(this.marketName + ' - Cash: ' + Math.floor(this.state.cash) + ' with ' + this.history.length + ' transactions')
     }
 
+    public getWinPct = (): number => {
+        return ((this.state.cash / this.history[0].cash) - 1) * 100
+    }
+
 
 }
 

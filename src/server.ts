@@ -5,21 +5,22 @@
  * @author	Jordane CURÉ
  */
 
+
+import { geneticTrainer } from './genetic/GeneticTrainer'
+import { IMarketAdviserConfig } from './marketAI/IMarketAdviserConfig'
 import { simulator } from './simulator/Simulator'
 import { marketTickStore } from './ticks/MarketTicksStore'
-import { Wallet } from './wallet/Wallet'
 
 
 const markets = ['ABC', 'DEF']
-
 marketTickStore.loadMarketTicks(markets)
 
+const initialConfig: IMarketAdviserConfig = {
+    aleaPct: 0.05,
+}
 
-const wallets: Wallet[] = markets.map((marketName) => {
-    return simulator.doSimulation(marketName)
-})
+// console.log(simulator.getSimulationResult(markets, initialConfig))
 
-wallets.forEach((wallet) => {
-    wallet.logWallet()
-})
 
+const simulationFunction = simulator.getSimulationFunction(markets)
+geneticTrainer.startTraining(simulationFunction, initialConfig)
