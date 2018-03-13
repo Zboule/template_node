@@ -1,16 +1,19 @@
 
+
 /**
  * @file	Entry point of the server
  * @author	Jordane CURÉ
  */
 
-import { coreAI } from './logic/CoreAI'
+import { simulator } from './simulator/Simulator'
+import { marketTickStore } from './ticks/MarketTicksStore'
 
 
-const startServer = async () => {
-    for (let i = 0; i < 10; i++) {
-        await coreAI.startSimulation()
-    }
-}
+const markets = ['ABC']
 
-startServer()
+marketTickStore.loadMarketTicks(markets)
+
+markets.forEach((marketName) => {
+    simulator.doSimulation(marketName)
+})
+

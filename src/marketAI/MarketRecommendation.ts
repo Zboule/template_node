@@ -1,21 +1,19 @@
+
 /**
  * @file MarketRecommendation.service
  * @author Jordane CURÉ
  */
 
-
-import { ITick } from '../models/ITick'
+import { ITick } from '../ticks/models/ITick'
 
 export type Recommendation = 'sell' | 'buy' | 'wait'
 
-export class MarketRecommendationService {
+export class MarketRecommendation {
 
     private static lastAction: Recommendation = 'wait'
-    constructor() {
-        // Empty constructor
-    }
 
-    public static getRecommendation(_ticks: ITick[]): Promise<Recommendation> {
+
+    public static getRecommendation(_ticks: ITick[]): Recommendation {
         const action = Math.random()
 
         let recommendation: Recommendation
@@ -32,7 +30,7 @@ export class MarketRecommendationService {
         else {
             recommendation = 'wait'
         }
-        return Promise.resolve(recommendation)
+        return recommendation
     }
 }
 

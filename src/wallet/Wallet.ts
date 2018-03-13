@@ -1,11 +1,15 @@
+
 /**
  * @file Wallet
  * @author Jordane CURÉ
  */
 
+import { CryptoPrice } from '../ticks/CryptoPrice'
+
+
 interface IWalletState {
     cash: number,
-    ownedCoins: { [coinName: string]: number }
+    ownedCoins: number
 }
 
 export class Wallet {
@@ -13,70 +17,73 @@ export class Wallet {
     private history: IWalletState[]
     private transactionFee: number = 0.999
 
-    constructor(cash: number) {
+    constructor(private cryptoPrice: CryptoPrice, initialCash: number) {
         this.state = {
-            cash,
-            ownedCoins: {},
+            cash: initialCash,
+            ownedCoins: 0,
         }
         this.history = [this.state]
     }
 
-    public getCoinsValue(coinName: string): number {
-        return this.state.ownedCoins[coinName]
+    public getCoinsValue(): number {
+        return this.state.ownedCoins
     }
 
-    public buyMaxCoin(coinName: string, coinPrice: number): void {
-        this.buyCoin(coinName, this.state.cash, coinPrice)
+    public async buyMaxCoin(): Promise<void> {
+        this.buyCoin(this.state.cash)
     }
 
-    public buyCoin(coinName: string, amoutOfCashToSpend: number, coinPrice: number): void {
+    public async buyCoin(amoutOfCashToSpend: number): Promise<void> {
         if (amoutOfCashToSpend > this.state.cash) {
             throw new Error('Not enougth cash to buy coin')
         }
         else {
+            const coinPrice = this.cryptoPrice.getLastTick().close as number
+
             const newState = {
                 cash: this.state.cash,
-                ownedCoins: { ...this.state.ownedCoins },
+                ownedCoins: this.state.ownedCoins,
             }
             newState.cash = this.state.cash - amoutOfCashToSpend
-            newState.ownedCoins[coinName] = this.state.ownedCoins[coinName] + ((amoutOfCashToSpend * this.transactionFee) / coinPrice)
+            newState.ownedCoins = this.state.ownedCoins + ((amoutOfCashToSpend * this.transactionFee) / coinPrice)
             this.state = newState
             this.history.push(this.state)
         }
     }
 
-    public sellAllCoin(coinName: string, coinPrice: number): void {
-        this.sellCoin(coinName, this.state.ownedCoins[coinName], coinPrice)
+    public sellAllCoin(): void {
+        this.sellCoin(this.state.ownedCoins)
     }
 
-    public sellCoin(coinName: string, nbOfCoin: number, coinPrice: number): void {
+    public async sellCoin(nbOfCoin: number): Promise<void> {
 
-        if (this.state.ownedCoins[coinName] < nbOfCoin) {
+        if (this.state.ownedCoins < nbOfCoin) {
             throw new Error('Try to sell negative number of coins')
         }
         else {
+            const coinPrice = this.cryptoPrice.getLastTick().close as number
+
             const newState = {
                 cash: this.state.cash,
-                ownedCoins: { ...this.state.ownedCoins },
+                ownedCoins: this.state.ownedCoins,
             }
             newState.cash = this.state.cash + nbOfCoin * coinPrice * this.transactionFee
-            newState.ownedCoins[coinName] = this.state.ownedCoins[coinName] - nbOfCoin
+            newState.ownedCoins = this.state.ownedCoins - nbOfCoin
             this.state = newState
             this.history.push(this.state)
         }
-    }
-
-    public addCoin(coinName: string): void {
-        this.state.ownedCoins[coinName] = 0
     }
 
     public logHistory = (): void => {
         this.history.forEach((state) => {
-            console.log('History state: ' + Math.floor(state.cash) + ' - ' + Math.floor(state.ownedCoins['']))
+            console.log('History state: ' + Math.floor(state.cash) + ' - ' + Math.floor(state.ownedCoins))
         })
     }
 
     public logWallet = (): void => {
         console.log('Cash: ' + Math.floor(this.state.cash) + ' with ' + this.history.length + ' transactions')
     }
+
+
 }
+
