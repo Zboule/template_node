@@ -15,9 +15,9 @@ class Simulator {
     private numberOfTickForSimulation: number = 100
 
 
-    public doSimulation(marketName: string): void {
+    public doSimulation(marketName: string): Wallet {
         const cryptoPrice = new CryptoPrice(marketName)
-        const wallet = new Wallet(cryptoPrice, 1000)
+        const wallet = new Wallet(cryptoPrice, 1000, marketName)
 
         const youngestTick = cryptoPrice.getYoungestTick()
         const oldestTick = cryptoPrice.getOldestTick()
@@ -25,8 +25,6 @@ class Simulator {
         let currentDate = oldestTick.time + (this.numberOfTickForSimulation * minute)
 
         let numberOfSimulationRemaning = (youngestTick.time - oldestTick.time) / minute
-
-        console.log(marketName + ' - Nb of simulation to do: ' + numberOfSimulationRemaning)
 
         while (currentDate < youngestTick.time) {
 
@@ -45,12 +43,13 @@ class Simulator {
             currentDate += minute
             numberOfSimulationRemaning--
             if (numberOfSimulationRemaning % 1000 === 0) {
-                console.log(marketName + ' - remaning simulation: ', numberOfSimulationRemaning)
+                console.log(marketName + ' - remaning simulation to process: ', numberOfSimulationRemaning)
             }
         }
 
         wallet.sellAllCoin()
-        wallet.logWallet()
+
+        return wallet
     }
 }
 

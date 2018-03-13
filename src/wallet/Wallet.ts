@@ -17,7 +17,7 @@ export class Wallet {
     private history: IWalletState[]
     private transactionFee: number = 0.999
 
-    constructor(private cryptoPrice: CryptoPrice, initialCash: number) {
+    constructor(private cryptoPrice: CryptoPrice, initialCash: number, private marketName: string) {
         this.state = {
             cash: initialCash,
             ownedCoins: 0,
@@ -81,7 +81,7 @@ export class Wallet {
     }
 
     public logWallet = (): void => {
-        console.log('Cash: ' + Math.floor(this.state.cash) + ' with ' + this.history.length + ' transactions')
+        console.log(this.marketName + ' - Cash: ' + Math.floor(this.state.cash) + ' with ' + this.history.length + ' transactions')
     }
 
 

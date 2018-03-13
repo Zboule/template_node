@@ -7,13 +7,19 @@
 
 import { simulator } from './simulator/Simulator'
 import { marketTickStore } from './ticks/MarketTicksStore'
+import { Wallet } from './wallet/Wallet'
 
 
-const markets = ['ABC']
+const markets = ['ABC', 'DEF']
 
 marketTickStore.loadMarketTicks(markets)
 
-markets.forEach((marketName) => {
-    simulator.doSimulation(marketName)
+
+const wallets: Wallet[] = markets.map((marketName) => {
+    return simulator.doSimulation(marketName)
+})
+
+wallets.forEach((wallet) => {
+    wallet.logWallet()
 })
 
